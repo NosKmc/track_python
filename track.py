@@ -76,7 +76,7 @@ while(video_input.isOpened()):
             face_points.append(shape_point)
         if len(face_points) == 68:
             reye, leye, mouth = face_param(face_points)
-            print(f"r_eye: {reye}, l_eye: {leye}, mouth: {mouth}")
+            print(f"r_eye: {reye:.3f}, l_eye: {leye:.3f}, mouth: {mouth:.3f}")
 
     cv2.imshow('face landmark detector', frame)
 
