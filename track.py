@@ -1,17 +1,16 @@
-import sys
 import dlib
 import cv2
-import time
 import copy
 
 
 predictor_path = "./shape_predictor_68_face_landmarks.dat"
 resize_rate = 4
+cam_number = 1
 
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(predictor_path)
 
-video_input = cv2.VideoCapture(1)
+video_input = cv2.VideoCapture(cam_number)
 
 def pdistance(p1, p2):
     return (p1.x - p2.x)**2 + (p1.y - p2.y)**2
@@ -76,7 +75,8 @@ while(video_input.isOpened()):
             # 各点をlistに入れる
             face_points.append(shape_point)
         if len(face_points) == 68:
-            print(face_param(face_points))
+            reye, leye, mouth = face_param(face_points)
+            print(f"r_eye: {reye}, l_eye: {leye}, mouth: {mouth}")
 
     cv2.imshow('face landmark detector', frame)
 
